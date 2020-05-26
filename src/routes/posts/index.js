@@ -5,15 +5,16 @@ const {findAllPosts,createNewPost} = require('../../controllers/posts')
 const route = Router()
 
 route.get('/', async(req,res) => {
-    const posts = await findAllPosts()
+    const posts = await findAllPosts(req.query)
     res.status(200).send(posts)
 })
 
 route.post('/', async(req,res)=> {
+    console.log(`Post /api/posts`,req.body)
     const {userId, title, body} = req.body
     if((!userId) ||(!title) ||(!body)){
        return res,status(400).send({
-        error: 'Need userid, title and bosy to create post'
+        error: 'Need userid, title and body to create post'
        })
     }
 

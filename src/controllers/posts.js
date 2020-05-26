@@ -15,9 +15,11 @@ async function createNewPost(userId, title, body) {
  * showAllPosts({title: ''})
  */
 async function findAllPosts(query) {
-  // TODO: Handle query params
+  let where ={}
+  if(query.userId){where.userId = query.userId}
   const posts = await Posts.findAll({
-    include: [ Users ]
+    include: [ Users ],
+    where
   })
 
   return posts
