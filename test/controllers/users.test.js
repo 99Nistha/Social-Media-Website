@@ -22,6 +22,15 @@ describe('controllers/users', () => {
     expect(foundUser.username).to.equal(createdUser.username)
   })
 
+  it('should through error for non number userid', async () => {
+
+    await expect(getUserById('sss')).to.be.rejectedWith('user id should be integer')
+    await expect(getUserById(null)).to.be.rejectedWith('user id not provided')
+    await expect(getUserById(true)).to.be.rejectedWith('user id should be integer')
+    await expect(getUserById(0)).to.be.rejectedWith('user id not provided')
+
+  })
+  
   it('should find user by username', async() =>{
     let foundUser = await getUserByUsername(createdUser.username)
     expect(foundUser.id).to.equal(createdUser.id)
