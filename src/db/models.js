@@ -15,6 +15,7 @@ if(process.env.NODE_ENV == 'testing') {
     })
 }
 
+
 const COL_ID_DEF = {
     type: Sequelize.DataTypes.INTEGER,
     autoIncrement: true,
